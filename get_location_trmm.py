@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 
 from    cached_io       import cached_io
@@ -28,7 +27,6 @@ def get_location_trmm(srcPath, cache=False, cache_dir=None):
 
 
 
-@ETA
 def main(args,opts):
     print args
     print opts

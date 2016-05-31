@@ -11,12 +11,11 @@
 
 
 import  os,sys
-from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
+from    optparse            import OptionParser
 
-from    cf.devel.collection         import cached
-from    cf2.io.read_hdf4            import read_hdf4
-from    cf2.io.read_hdf5            import read_hdf5
+from    alien.collection    import cached
+from    alien.read_hdf4     import read_hdf4
+from    alien.read_hdf5     import read_hdf5
 
 
 def cached_io( srcPath, varName, mode='skip', cacheDir=None):
@@ -40,7 +39,6 @@ def cached_io( srcPath, varName, mode='skip', cacheDir=None):
     return aOut
 
 
-@ETA
 def main(args,opts):
     print args
     print opts

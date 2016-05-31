@@ -1,10 +1,10 @@
 #! /usr/bin/python
 #--------------------------------------------------------------------
-# PROGRAM    : get_cache_dir.py
-# CREATED BY : hjkim @IIS.2015-07-13 13:09:03.418307
+# PROGRAM    : bin_bytbound.py
+# CREATED BY : hjkim @IIS.2015-07-13 09:05:31.202880
 # MODIFED BY :
 #
-# USAGE      : $ ./get_cache_dir.py
+# USAGE      : $ ./bin_bytbound.py
 #
 # DESCRIPTION:
 #------------------------------------------------------cf0.2@20120401
@@ -12,8 +12,36 @@
 
 import  os,sys
 from    optparse        import OptionParser
+from    cf.util.LOGGER  import *
+
+import  bisect
+
+def bin_bytbound( DTime, dtBnd, aSrc=None ):
+    '''
+    return Indexer if aSrc == None
+                   else binned aSrc
+    '''
+
+    searchidx   = bisect.bisect_left
+    Idx = (searchidx( DTime, bnd  ) for bnd in dtBnd)
+
+    if aSrc == None:
+        Idx     = list(Idx)
+        return map(None, Idx[:-1], Idx[1:])
+
+    else:
+        sIdx    = Idx.next()
+
+        aOut    = []
+        for eIdx in Idx:
+            if sIdx == eIdx : continue
+
+            aOut.append( aSrc[sIdx:eIdx] )
+            sIdx = eIdx
+        return aOut
 
 
+@ETA
 def main(args,opts):
     print args
     print opts

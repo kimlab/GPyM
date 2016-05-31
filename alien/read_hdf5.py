@@ -1,10 +1,10 @@
 #! /usr/bin/python
 #--------------------------------------------------------------------
-# PROGRAM    : get_cache_dir.py
-# CREATED BY : hjkim @IIS.2015-07-13 13:09:03.418307
+# PROGRAM    : read_hdf5.py
+# CREATED BY : hjkim @IIS.2015-07-13 11:52:15.012270
 # MODIFED BY :
 #
-# USAGE      : $ ./get_cache_dir.py
+# USAGE      : $ ./read_hdf5.py
 #
 # DESCRIPTION:
 #------------------------------------------------------cf0.2@20120401
@@ -12,8 +12,40 @@
 
 import  os,sys
 from    optparse        import OptionParser
+from    cf.util.LOGGER  import *
+
+import  h5py
 
 
+def read_hdf5(srcPath, varName, Slice=None, verbose=True):
+    h5      = h5py.File(srcPath, 'r')
+
+    if Slice == None:   Slice = slice(None,None,None)
+
+    try:
+        h5Var   = h5[varName]
+        aOut    = h5Var[Slice]
+
+    except:
+        print '!'*80
+        print 'I/O Error'
+        print 'Blank File? %s'%srcPath
+        print 'Blank array will be returned [ %s ]'%varName
+        print h5Var.shape
+        print Slice
+        print '!'*80
+
+        raise ValueError
+
+    if verbose  == True:
+        print '\t[READ_HDF5] %s %s -> %s'%( srcPath, h5Var.shape, aOut.shape)
+
+    h5.close()
+
+    return aOut
+
+
+@ETA
 def main(args,opts):
     print args
     print opts

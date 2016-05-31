@@ -12,7 +12,7 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
+from    alien.LOGGER    import *
 
 from    datetime        import datetime, timedelta
 
@@ -32,7 +32,7 @@ def main(args,opts):
 
     prjName = 'GPM.GMI'
     prdLv   = 'L2'
-    prdVer  = '02'
+    prdVer  = '03'
     varName = 'S1/surfacePrecipitation'
 
 

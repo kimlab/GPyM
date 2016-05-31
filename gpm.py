@@ -14,21 +14,17 @@ import  os,sys,time
 import  cPickle         as pickle
 from    optparse        import OptionParser
 
-from    cf.util.LOGGER  import *
 
 from    numpy           import empty
 
-#import  h5py
-#from    pyhdf           import SD
+from    alien.util                  import dtrange
 
-from    cf.util         import dtrange
+from    alien.GridCoordinates       import GridCoordinates
 
-from    cf.devel.GridCoordinates    import GridCoordinates
+from    alien.read_hdf4             import read_hdf4
+from    alien.read_hdf5             import read_hdf5
 
-from    cf2.io                      import read_hdf4
-from    cf2.io                      import read_hdf5
-
-from    cf2.TimeSeries              import bin_bytbound
+from    alien.TimeSeries            import bin_bytbound
 
 from    gpm_data                    import GPM_data
 from    search_granules             import search_granules

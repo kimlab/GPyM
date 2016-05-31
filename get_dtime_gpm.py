@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    numpy           import array
 from    datetime        import datetime, timedelta
@@ -51,8 +50,6 @@ def get_dtime_gpm(srcPath, cache=False, cache_dir=None):
     return array( DTime )
 
 
-
-@ETA
 def main(args,opts):
     print args
     print opts

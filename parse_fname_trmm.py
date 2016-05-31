@@ -12,7 +12,6 @@
 
 import  os, sys, re
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    datetime        import timedelta
 
@@ -32,34 +31,5 @@ def parse_fname_trmm(fName, ATTR):
                }
 
     return [dictFunc[attr] for attr in ATTR]
-
-
-
-@ETA
-def main(args,opts):
-    print args
-    print opts
-
-    return
-
-
-if __name__=='__main__':
-    usage   = 'usage: %prog [options] arg'
-    version = '%prog 1.0'
-
-    parser  = OptionParser(usage=usage,version=version)
-
-#    parser.add_option('-r','--rescan',action='store_true',dest='rescan',
-#                      help='rescan all directory to find missing file')
-
-    (options,args)  = parser.parse_args()
-
-#    if len(args) == 0:
-#        parser.print_help()
-#    else:
-#        main(args,options)
-
-#    LOG     = LOGGER()
-    main(args,options)
 
 

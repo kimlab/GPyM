@@ -12,13 +12,12 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    numpy           import zeros, ma
 
-from    cf.util         import upscale
-from    cf.util         import nearest_idx
-from    cf.devel.GridCoordinates    import GridCoordinates
+from    alien                   import upscale
+from    alien                   import nearest_idx
+from    alien.GridCoordinates   import GridCoordinates
 
 
 def granule2map(lat, lon, aSrc, BBox=None, res=0.1, verbose=True):
@@ -44,34 +43,5 @@ def granule2map(lat, lon, aSrc, BBox=None, res=0.1, verbose=True):
         print '\t[GRANULE2MAP] Domain:%s %s -> %s'%( BBox, aSrc.shape, aOut.shape)
 
     return aOut
-
-
-
-@ETA
-def main(args,opts):
-    print args
-    print opts
-
-    return
-
-
-if __name__=='__main__':
-    usage   = 'usage: %prog [options] arg'
-    version = '%prog 1.0'
-
-    parser  = OptionParser(usage=usage,version=version)
-
-#    parser.add_option('-r','--rescan',action='store_true',dest='rescan',
-#                      help='rescan all directory to find missing file')
-
-    (options,args)  = parser.parse_args()
-
-#    if len(args) == 0:
-#        parser.print_help()
-#    else:
-#        main(args,options)
-
-#    LOG     = LOGGER()
-    main(args,options)
 
 

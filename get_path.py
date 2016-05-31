@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    parse_fname_trmm    import parse_fname_trmm
 from    parse_fname_gpm     import parse_fname_gpm
@@ -63,7 +62,6 @@ def get_path(srcDir, sDTime, eDTime):
 
 
 
-@ETA
 def main(args,opts):
     print args
     print opts

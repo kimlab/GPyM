@@ -12,9 +12,8 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
-from    cf.devel.collection         import cached
+from    alien.collection            import cached
 
 from    get_location_gpm            import get_location_gpm
 from    get_location_trmm           import get_location_trmm
@@ -53,7 +52,6 @@ def get_gtrack_dim(srcPath, cache=False, cache_dir=None):
 
 
 
-@ETA
 def main(args,opts):
     print args
     print opts
