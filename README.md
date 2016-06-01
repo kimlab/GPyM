@@ -1,40 +1,26 @@
 # GPyM
-GPyM [dʒi:pi:ɜm / gee pee em] is a GPM (Global Precipitation Mission) Python Module.
+GPyM [dʒi:pi:ɜm / gee pee em] is a GPM (Global Precipitation Mission) Python Module to handle (e.g., search, extract, mapping, and so on) GPM/DPR/GMI and TRMM/PR/TMI. It is a working beta currently (2016-06-01). First official release will be by July 2016.
 
-### Import data
-```sh
-from cf2.io.GPM import GPMi
+### Features
+* Search and extract granules by timespan and spatial domain
+* Convert and upscale granules to a gridded format 
+* Cached IO to speed up for repeated tasks 
+
+### Installation
+
+#### Dependency
+* numpy: python array manipulation module 
+* h5py: python HDF5 IO module (for GPM/DPR/GMI) 
+* pyhdf   : python HDF4 IO module (for TRMM/PR/TMI) 
+
+### Download Package
+```bash
+$ git@github.com:kimlab/GPyM.git
 ```
-### To read the data
-For DPR:
-```sh
-prjName = "GPM.DPR"
-prdLv   = "L2"
-prdVer  = "03"
-varName = "NS/SLV/precipRateESurface"
-```
-For GMI:
-```sh
-prjName = "GPM.GMI"
-prdLv   = "L2"
-prdVer  = "03"  
-varName = "S1/surfacePrecipitation"
-```
-### To load the orbit data
-```sh
-gpm = GPM(prjName, prdLv, prdVer)
-```
-After establishing a start time and an end time with the function datetime (sDTime, eDTime), the domain, resolution, and ???
-```sh
-gpmJP   = gpm('NS/SLV/precipRateESurface', sDTime, eDTime, BBox, res, delT )
-```
-The global data of GPM:
->obt   = gpm(varName, sDTime, eDTime, [[-89.99,-180.0],[89.99,179.99]])
+### Syntax
+![png](./doc/syntax.rev00.png)
 
-
-
-
-
+### Example
 ```python
 from pylab import *
 %matplotlib inline
