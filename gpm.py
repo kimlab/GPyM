@@ -26,6 +26,7 @@ from    alien.read_hdf5             import read_hdf5
 
 from    alien.TimeSeries            import bin_bytbound
 
+import  settings
 from    gpm_data                    import GPM_data
 from    search_granules             import search_granules
 from    granule2map                 import granule2map
@@ -40,7 +41,8 @@ class GPM(object):
         prdVer      : e.g.) '02'
         '''
 
-        self.baseDir    = '/tank/hjkim/GPM/'
+        self.baseDir    = settings.baseDir
+        #self.baseDir    = '/tank/hjkim/GPM/'
 
         self.prjName    = prjName
         self.prdLv      = prdLv

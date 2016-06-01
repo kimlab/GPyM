@@ -15,8 +15,8 @@ from    optparse        import OptionParser
 
 from    numpy           import zeros, ma
 
-from    alien                   import upscale
-from    alien                   import nearest_idx
+from    alien.util              import upscale
+from    alien.util              import nearest_idx
 from    alien.GridCoordinates   import GridCoordinates
 
 
