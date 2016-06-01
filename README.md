@@ -13,7 +13,7 @@ GPyM [dʒi:pi:ɜm / gee pee em] is a GPM (Global Precipitation Mission) Python M
 * h5py: python HDF5 IO module (for GPM/DPR/GMI) 
 * pyhdf   : python HDF4 IO module (for TRMM/PR/TMI) 
 
-### Download Package
+### Download and Install Package
 ```bash
 $ git@github.com:kimlab/GPyM.git
 
