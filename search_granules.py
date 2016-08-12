@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    numpy           import arange, ma
 
@@ -67,7 +66,6 @@ def search_granules(srcDir, sDTime, eDTime, BBox=None, thresh=0.001, cacheDir=No
 
 
 
-@ETA
 def main(args,opts):
     print args
     print opts
