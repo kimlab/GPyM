@@ -12,7 +12,7 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
+from    LOGGER          import *
 
 import  bisect
 

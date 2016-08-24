@@ -17,7 +17,7 @@ from    optparse        import OptionParser
 
 from    numpy           import empty
 
-from    alien.util                  import dtrange
+from    alien.dtrange               import dtrange
 
 from    alien.GridCoordinates       import GridCoordinates
 

@@ -18,6 +18,10 @@ from    datetime        import datetime, timedelta
 
 from    gpm             import GPM
 
+import pylab as pl
+import numpy as np
+from mpl_toolkits.basemap   import Basemap
+
 
 @ETA
 def main(args,opts):
@@ -46,8 +50,6 @@ def main(args,opts):
 #    eDTime  = datetime( 2014,5,15 )
 
     print sDTime, eDTime
-    from pylab                  import *
-    from mpl_toolkits.basemap   import Basemap
 
     M   = Basemap( resolution='c' ,llcrnrlat=BBox[0][0], llcrnrlon=BBox[0][1], urcrnrlat=BBox[1][0], urcrnrlon=BBox[1][1])
 
@@ -55,23 +57,22 @@ def main(args,opts):
     gpm     = GPM(prjName, prdLv, prdVer)
 
     JP      = gpm(varName,
-                  #datetime(2014,4,19),
-                  datetime.datetime(2014,4,1),
-                  datetime.datetime(2014,5,1),
+                  sDTime,
+                  eDTime,
                   BBox,
                   #[[30,125],[45,145]],
                   0.2,
                   )
     '''
                   0.1,
-                  datetime.timedelta(seconds=3600*24))
+                  timedelta(seconds=3600*24))
     '''
 
-    A   = ma.masked_less_equal( array( JP.griddata ), 0 )
-    figure();M.imshow( A.mean(0) );colorbar()
+    A   = np.ma.masked_less_equal( np.array( JP.griddata ), 0 )
+    pl.figure();M.imshow( A.mean(0) );pl.colorbar()
     #figure();M.scatter(JP.lon.flatten(), JP.lat.flatten(), 10, JP.data.flatten(), edgecolor='none',vmin=0,vmax=10);colorbar()
     M.drawcoastlines()
-    show()
+    pl.show()
 
     sys.exit()
     gpmJP   = gpm('NS/SLV/precipRateESurface', sDTime, eDTime, BBox, res, delT )
