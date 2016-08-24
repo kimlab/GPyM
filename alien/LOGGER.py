@@ -1,9 +1,8 @@
 import os,sys,time
 from datetime import datetime
-from   cf import settings
-from cf.util import TextArt
-from cf.util import getFuncName, getCallerName
-from cf.util.AnsiFormatter import AnsiFormatter
+from util import TextArt
+from util import getFuncName, getCallerName
+from util.AnsiFormatter import AnsiFormatter
 
 
 def ETA(func):

@@ -10,26 +10,32 @@ import multiprocessing as MP
 import time,re
 import sys
 
-
+'''
 try:
     from cf                 import rgetara
 except:
     print 'Warning! cannot load rgetara.so'
+'''
 
-
+'''
 from cf.util.logging        import logging
 
 #dep TextArt
-from cf.util.AnsiFormatter  import AnsiFormatter
+'''
+from AnsiFormatter  import AnsiFormatter
 
+'''
 from cf                     import mpFunc
+'''
 
 #from cf.rgetlen         import rgetlen
+'''
 import ftplib
 try:
     from xml.etree import ElementTree as etree
 except:
     print 'ElementTree cannot be loaded.'
+'''
 
 
 class TextArt(object):

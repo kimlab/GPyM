@@ -1,6 +1,6 @@
 #! /usr/bin/python
 #--------------------------------------------------------------------
-# PROGRAM    : __init__.py	
+# PROGRAM    : __init__.py
 # CREATED BY : hjkim @IIS.2016-06-01 10:44:37.888292
 # MODIFED BY :
 #
@@ -12,7 +12,7 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
+from    LOGGER          import *
 
 
 @ETA
@@ -42,4 +42,4 @@ if __name__=='__main__':
 #    LOG     = LOGGER()
     main(args,options)
 
-    
+
