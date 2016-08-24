@@ -2,7 +2,7 @@ import os,sys,time
 from datetime import datetime
 from util import TextArt
 from util import getFuncName, getCallerName
-from util.AnsiFormatter import AnsiFormatter
+from AnsiFormatter import AnsiFormatter
 
 
 def ETA(func):
