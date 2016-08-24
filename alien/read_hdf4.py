@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 from    pyhdf           import SD
 
@@ -55,7 +54,6 @@ def read_hdf4(srcPath, varName, Slice=None, verbose=True):
 
 
 
-@ETA
 def main(args,opts):
     print args
     print opts

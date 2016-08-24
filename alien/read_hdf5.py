@@ -12,7 +12,6 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    cf.util.LOGGER  import *
 
 import  h5py
 
@@ -45,7 +44,6 @@ def read_hdf5(srcPath, varName, Slice=None, verbose=True):
     return aOut
 
 
-@ETA
 def main(args,opts):
     print args
     print opts
