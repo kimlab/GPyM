@@ -2,9 +2,7 @@ import os,sys
 from        numpy           import arange, linspace, meshgrid, zeros, fromfile, concatenate
 from        numpy           import loadtxt, argmax
 
-from        cf.util         import unique_counts
-#from        pylab           import *
-
+from    unique_counts       import unique_counts
 
 def conv180to360(lon):
     ''' convert between -180~180 and 0~360 '''

@@ -4,7 +4,6 @@ from datetime import datetime,timedelta,date,time
 from numpy      import arange,array,array_split,mean,empty,zeros,sum
 from numpy      import concatenate,ma,ndarray,log,invert
 from numpy      import where,polyfit,invert,meshgrid,resize
-from    numpy           import bincount, nonzero
 
 import multiprocessing as MP
 import time,re
@@ -92,20 +91,6 @@ def dtrange(sDTime,eDTime,delTime):
 
     return [sDTime+delTime*i
                 for i in range(int((eDTime-sDTime).total_seconds()/delTime.total_seconds()))]
-
-
-def unique_counts(aSrc):
-    '''
-    aSrc    : 1d-array
-
-    ### numpy v1.9 included faster implimentation @ np.unique
-    '''
-    print aSrc
-
-    bincnt          = bincount( aSrc )
-    elements        = nonzero( bincnt )[0]
-
-    return array( zip( bincnt, elements ) ).T
 
 
 
