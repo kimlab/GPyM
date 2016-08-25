@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/19166/kimlab/GPyM.svg)](https://zenodo.org/badge/latestdoi/19166/kimlab/GPyM)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.60789.svg)](http://dx.doi.org/10.5281/zenodo.60789)
 
 # GPyM
 GPyM [dʒi:pi:ɜm / gee pee em] is a GPM (Global Precipitation Mission) Python Module to handle (e.g., search, extract, mapping, and so on) GPM/DPR/GMI and TRMM/PR/TMI. It is a working beta currently (2016-06-01). First official release will be by July 2016.
