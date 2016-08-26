@@ -66,7 +66,8 @@ class LOGGER(object):
             logPath = os.path.join(settings.LOG_DIR,logFName)
 
 
-        logDir  = '/'.join(logPath.split('/')[:-1])
+        logDir  = os.path.dirname( logPath )
+        #logDir  = '/'.join(logPath.split('/')[:-1])
 
         if not os.path.exists(logDir) and logDir != '':
             os.makedirs(logDir)

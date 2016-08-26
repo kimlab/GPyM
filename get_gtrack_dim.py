@@ -32,7 +32,7 @@ def get_gtrack_dim(srcPath, cache=False, cache_dir=None):
 
     verbose     = False
 
-    prjName, prdLv, prdVer, yyyy, mm, srcFName  = srcPath.split('/')[-6:]
+    prjName, prdLv, prdVer, yyyy, mm, srcFName  = srcPath.split(os.path.sep)[-6:]
 
     get_dtime, get_location = {'TRMM': [get_dtime_trmm, get_location_trmm],
                                'GPM' : [get_dtime_gpm,  get_location_gpm ],

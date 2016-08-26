@@ -26,7 +26,8 @@ def cached_io( srcPath, varName, mode='skip', cacheDir=None):
         func_read   = read_hdf4
 
 
-    cacheFName  = srcPath.split('/')[-1] + '.%s'%'.'.join(varName.split('/'))
+    #cacheFName  = srcPath.split('/')[-1] + '.%s'%'.'.join(varName.split('/'))
+    cacheFName  = os.path.basename( srcPath ) + '.%s'%'.'.join(varName.split('/'))
 
     verbose = False
     aOut    = cached(cacheFName, cacheDir, mode=mode, verbose=verbose)(func_read)(srcPath, varName)

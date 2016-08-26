@@ -22,7 +22,7 @@ def get_path(srcDir, sDTime, eDTime):
     select GPM(hdf5) and TRMM(hdf4) files and return their paths)
     '''
 
-    prjName, prdLv, prdVer  = srcDir.split('/')[-3:]
+    prjName, prdLv, prdVer  = srcDir.split(os.path.sep)[-3:]
 
     parse_fname     = {'TRMM': parse_fname_trmm,
                        'GPM' : parse_fname_gpm}[ prjName.split('.')[0] ]
