@@ -48,6 +48,18 @@ class GPM(object):
         self.prdLv      = prdLv
         self.prdVer     = prdVer
 
+	self.prdDir     = os.path.join( self.baseDir,
+                                        self.prjName,
+                                        self.prdLv,
+                                        self.prdVer)
+
+        self.cacheDir   = os.path.join( self.baseDir,
+                                        'cache.dim',
+                                         self.prjName,
+                                         self.prdLv,
+                                         self.prdVer)
+
+        '''
         self.prdDir     = '%s/%s/%s/%s'%(self.baseDir,
                                          self.prjName,
                                          self.prdLv,
@@ -57,6 +69,8 @@ class GPM(object):
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
+        '''
+
 
         self.func_read  = {'TRMM': read_hdf4,
                            'GPM' : read_hdf5}[ prjName.split('.')[0] ]

@@ -35,7 +35,8 @@ def get_path(srcDir, sDTime, eDTime):
 
     # do not know the reason of implementation ++++++++++++++++++++++
     # consider to use trange
-    srcDIR  = [os.path.join(srcDir, '%i/%02d'%(y,m))
+    #srcDIR  = [os.path.join(srcDir, '%i/%02d'%(y,m))
+    srcDIR  = [os.path.join(srcDir, str(y), '%02d'%m)
                             for y in range(sDTime.year,eDTime.year+1)
                                 for m in range(1,13)]
 
