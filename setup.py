@@ -1,11 +1,12 @@
 from distutils.core import setup
 
-gpmDir  = 'default'
-#gpmDir  = '/tank/hjkim/GPM'
+'''
+gpmDir  = ''
 
 if gpmDir == '':
     print gpmDir
     raise ValueError, 'gpmDir should be specificed'
+'''
 
 setupFile   = open('settings.py','w')
 setupFile.write('baseDir = "%s"\n'%gpmDir)
@@ -16,9 +17,11 @@ setup( name                 = 'GPyM',
        description          = 'GPM Python Module',
        author               = 'Hyungjun Kim',
        author_email         = 'hyungjun@gmail.com',
-       url                  = '',
+       url                  = 'https://github.com/kimlab/GPyM',
        #package_dir          = {'GPyM':'./'},
        package_dir          = {'GPyM':''},
        packages             = ['GPyM','GPyM.alien'],
        install_requires     = ['numpy'],
+
+       license              = 'MIT',
       )
