@@ -6,11 +6,11 @@ gpmDir  = ''
 if gpmDir == '':
     print gpmDir
     raise ValueError, 'gpmDir should be specificed'
-'''
 
 setupFile   = open('settings.py','w')
 setupFile.write('baseDir = "%s"\n'%gpmDir)
 setupFile.close()
+'''
 
 setup( name                 = 'GPyM',
        version              = '0.52b',
