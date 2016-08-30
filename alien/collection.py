@@ -2,14 +2,13 @@
 
 import  os,sys
 from    cStringIO       import StringIO
-import  lz4
 
 from numpy              import load, save, array
 from numpy.lib.format   import open_memmap
 
 
 #def cached(mode='normal',cacheName=None,cacheDir='./cached',compress='lz4'):
-def cached(name=None, dir='./cached', compress='lz4', mode='cached', verbose=True):
+def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=True):
     '''
     mode : in ['cached',    # read from cached file if exists
                'skip'  ,    # skip caching process
@@ -50,6 +49,8 @@ def cached(name=None, dir='./cached', compress='lz4', mode='cached', verbose=Tru
                 aOut    = func( *args, **kwargs )
 
                 if compress=='lz4':
+                    import lz4
+
                     cached  = StringIO()
                     save( cached, aOut )
                     open(cachePath,'w').write( lz4.dumps( cached.getvalue() ) )
