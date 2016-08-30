@@ -23,5 +23,7 @@ setup( name                 = 'GPyM',
        packages             = ['GPyM','GPyM.alien'],
        install_requires     = ['numpy'],
 
+       include_package_data = True,
+
        license              = 'MIT',
       )
