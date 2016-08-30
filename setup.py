@@ -13,7 +13,7 @@ setupFile.close()
 '''
 
 setup( name                 = 'GPyM',
-       version              = '0.54b',
+       version              = '0.55b',
        description          = 'GPM Python Module',
        long_description     = ''' long_description to be written. ''',
 
