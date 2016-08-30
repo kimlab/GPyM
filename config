@@ -1,6 +1,9 @@
 [Directories]
 dataroot:
 
+[Compress]
+format:
+
 [GPortal]
 id:
 
