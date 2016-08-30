@@ -42,12 +42,12 @@ def main(args,opts):
     '''
 
 
-    BBox    = [[20,0],[48,180]]   # Radar-AMeDAS domain
-    #BBox    = [[20,118],[48,150]]   # Radar-AMeDAS domain
+    #BBox    = [[20,0],[48,180]]   # Radar-AMeDAS domain
+    BBox    = [[20,118],[48,150]]   # Radar-AMeDAS domain
     res     = 0.1
     delT    = timedelta(seconds=60*60)
 
-    sDTime  = datetime( 2014,4,15 )
+    sDTime  = datetime( 2014,4,30 )
     #eDTime  = datetime( 2014,4,2) #,0,59)
     eDTime  = datetime( 2014,5,3 )
 #    eDTime  = datetime( 2014,5,15 )
