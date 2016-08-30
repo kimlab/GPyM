@@ -18,10 +18,10 @@ setup( name                 = 'GPyM',
        long_description     = ''' long_description to be written. ''',
 
        classifiers          = [
-                            'Development Status :: 2 - Beta',
+                            'Development Status :: 4 - Beta',
                             'License :: OSI Approved :: MIT License',
                             'Programming Language :: Python :: 2.7',
-                            'Topic :: Scientific/Engineering :: Hydrology',
+                            'Topic :: Scientific/Engineering :: Atmospheric Science',
                             ],
        keywords             = 'precipitation satellite gpm trmm jaxa',
        url                  = 'https://github.com/kimlab/GPyM',
