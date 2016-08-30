@@ -26,7 +26,10 @@ def search_granules(srcDir, sDTime, eDTime, BBox=None, thresh=0.001, cacheDir=No
                                                 /* lon: -180 ~ 180 */
     '''
 
-    cache   = 'cached'
+    cache   = False if cacheDir == None     \
+         else 'cached'
+
+    cache   = False
 
     srcPATH = get_path(srcDir, sDTime, eDTime)
 

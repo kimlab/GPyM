@@ -101,6 +101,8 @@ class GPM(object):
         gpmData     = GPM_data()
 
         srcDir      = os.path.join( self.dataDir, self.prdDir )
+
+        assert os.path.exists( srcDir ), '{} is not exists.'.format( srcDir )
         Granule     = search_granules( srcDir, sDTime, eDTime, BBox, cacheDir=self.cacheDir )
 
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]
