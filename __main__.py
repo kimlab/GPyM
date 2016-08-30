@@ -31,27 +31,28 @@ def main(args,opts):
 
     prjName = 'GPM.KuPR'
     prdLv   = 'L2'
-    prdVer  = '02'
+    prdVer  = '04'
     varName = 'NS/SLV/precipRateESurface'
 
+    '''
     prjName = 'GPM.GMI'
     prdLv   = 'L2'
     prdVer  = '03'
     varName = 'S1/surfacePrecipitation'
+    '''
 
 
-    BBox    = [[20,118],[48,150]]   # Radar-AMeDAS domain
+    BBox    = [[20,0],[48,180]]   # Radar-AMeDAS domain
+    #BBox    = [[20,118],[48,150]]   # Radar-AMeDAS domain
     res     = 0.1
     delT    = timedelta(seconds=60*60)
 
-    sDTime  = datetime( 2014,4,30 )
+    sDTime  = datetime( 2014,4,15 )
     #eDTime  = datetime( 2014,4,2) #,0,59)
     eDTime  = datetime( 2014,5,3 )
 #    eDTime  = datetime( 2014,5,15 )
 
     print sDTime, eDTime
-
-    M   = Basemap( resolution='c' ,llcrnrlat=BBox[0][0], llcrnrlon=BBox[0][1], urcrnrlat=BBox[1][0], urcrnrlon=BBox[1][1])
 
 
     gpm     = GPM(prjName, prdLv, prdVer)
@@ -69,6 +70,9 @@ def main(args,opts):
     '''
 
     A   = np.ma.masked_less_equal( np.array( JP.griddata ), 0 )
+
+    M   = Basemap( resolution='c' ,llcrnrlat=BBox[0][0], llcrnrlon=BBox[0][1], urcrnrlat=BBox[1][0], urcrnrlon=BBox[1][1])
+
     pl.figure();M.imshow( A.mean(0) );pl.colorbar()
     #figure();M.scatter(JP.lon.flatten(), JP.lat.flatten(), 10, JP.data.flatten(), edgecolor='none',vmin=0,vmax=10);colorbar()
     M.drawcoastlines()

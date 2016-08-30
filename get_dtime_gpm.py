@@ -19,7 +19,7 @@ from    datetime        import datetime, timedelta
 from    cached_io       import cached_io
 
 
-def get_dtime_gpm(srcPath, cache=False, cache_dir=None):
+def get_dtime_gpm(srcPath, fn_read, cache=False, cache_dir=None):
     cio     = cached_io
 
     if   'GMI'  in srcPath  : h5Grp = 'S1'
@@ -29,13 +29,13 @@ def get_dtime_gpm(srcPath, cache=False, cache_dir=None):
     else:
         raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
 
-    Year    = cio( srcPath, '%s/ScanTime/Year'%h5Grp,       cache, cache_dir).astype('int')
-    Month   = cio( srcPath, '%s/ScanTime/Month'%h5Grp,      cache, cache_dir).astype('int')
-    Day     = cio( srcPath, '%s/ScanTime/DayOfMonth'%h5Grp, cache, cache_dir).astype('int')
-    Hour    = cio( srcPath, '%s/ScanTime/Hour'%h5Grp,       cache, cache_dir).astype('int')
-    Minute  = cio( srcPath, '%s/ScanTime/Minute'%h5Grp,     cache, cache_dir).astype('int')
-    Second  = cio( srcPath, '%s/ScanTime/Second'%h5Grp,     cache, cache_dir).astype('int')
-    MicSec  = cio( srcPath, '%s/ScanTime/MilliSecond'%h5Grp,cache, cache_dir).astype('int')*1000
+    Year    = cio( srcPath,'%s/ScanTime/Year'%h5Grp,       fn_read,cache,cache_dir).astype('int')
+    Month   = cio( srcPath,'%s/ScanTime/Month'%h5Grp,      fn_read,cache,cache_dir).astype('int')
+    Day     = cio( srcPath,'%s/ScanTime/DayOfMonth'%h5Grp, fn_read,cache,cache_dir).astype('int')
+    Hour    = cio( srcPath,'%s/ScanTime/Hour'%h5Grp,       fn_read,cache,cache_dir).astype('int')
+    Minute  = cio( srcPath,'%s/ScanTime/Minute'%h5Grp,     fn_read,cache,cache_dir).astype('int')
+    Second  = cio( srcPath,'%s/ScanTime/Second'%h5Grp,     fn_read,cache,cache_dir).astype('int')
+    MicSec  = cio( srcPath,'%s/ScanTime/MilliSecond'%h5Grp,fn_read,cache,cache_dir).astype('int')*1000
 
     DTime   = []
     for y,m,d,H,M,S,uS in map(None,Year,Month,Day,Hour,Minute,Second,MicSec):

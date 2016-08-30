@@ -17,7 +17,7 @@ from    optparse        import OptionParser
 from    cached_io       import cached_io
 
 
-def get_location_gpm(srcPath, cache=False, cache_dir=None):
+def get_location_gpm(srcPath, fn_read, cache=False, cache_dir=None):
     cio     = cached_io
 
     if   'GMI'  in srcPath  : h5Grp = 'S1'
@@ -27,8 +27,8 @@ def get_location_gpm(srcPath, cache=False, cache_dir=None):
     else:
         raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
 
-    Lat     = cio( srcPath, '%s/Latitude'%h5Grp,  cache, cache_dir )
-    Lon     = cio( srcPath, '%s/Longitude'%h5Grp, cache, cache_dir )
+    Lat     = cio( srcPath, '%s/Latitude'%h5Grp,  fn_read, cache, cache_dir )
+    Lon     = cio( srcPath, '%s/Longitude'%h5Grp, fn_read, cache, cache_dir )
 
     return Lat, Lon
 

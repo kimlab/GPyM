@@ -14,17 +14,11 @@ import  os,sys
 from    optparse            import OptionParser
 
 from    alien.collection    import cached
-from    alien.read_hdf4     import read_hdf4
-from    alien.read_hdf5     import read_hdf5
+#from    alien.read_hdf4     import read_hdf4
+#from    alien.read_hdf5     import read_hdf5
 
 
-def cached_io( srcPath, varName, mode='skip', cacheDir=None):
-    if srcPath[-2:] == 'h5':
-        func_read   = read_hdf5
-
-    else:
-        func_read   = read_hdf4
-
+def cached_io( srcPath, varName, func_read, mode='skip', cacheDir=None):
 
     #cacheFName  = srcPath.split('/')[-1] + '.%s'%'.'.join(varName.split('/'))
     cacheFName  = os.path.basename( srcPath ) + '.%s'%'.'.join(varName.split('/'))

@@ -10,10 +10,11 @@
 #------------------------------------------------------cf0.2@20120401
 
 
-import  os,sys,time
+import  os, sys, importlib
+import  time
 import  cPickle         as pickle
 from    optparse        import OptionParser
-from    ConfigParser    import ConfigParser
+from    ConfigParser    import SafeConfigParser
 
 
 from    numpy           import empty
@@ -22,29 +23,34 @@ from    alien.dtrange               import dtrange
 
 from    alien.GridCoordinates       import GridCoordinates
 
-from    alien.read_hdf4             import read_hdf4
-from    alien.read_hdf5             import read_hdf5
+#from    alien.read_hdf4             import read_hdf4
+#from    alien.read_hdf5             import read_hdf5
 
 from    alien.TimeSeries            import bin_bytbound
 
 from    gpm_data                    import GPM_data
-from    search_granules             import search_granules
+from    search_granules             import SearchGranules
 from    granule2map                 import granule2map
 
 
 
-class GPM(object):
-    def __init__(self, prjName, prdLv, prdVer='02', **kwargs):
+class GPM( SearchGranules ):
+    def __init__(self, prjName, prdLv, prdVer, **kwargs):
         '''
         prjName     : e.g.) 'GPM.KuPR'
         prdLv       : e.g.) 'L2'
         prdVer      : e.g.) '02'
         '''
 
-        cfg             = ConfigParser()
-        cfg.read( 'config' )
+        self.cfg        = SafeConfigParser( os.environ )
+        self.cfg.read( 'config' )
 
-        self.dataDir    = cfg.get('Directories', 'dataroot')
+        self.cfg._sections['Defaults'].update( kwargs )
+
+        if self.cfg.get( 'Defaults','dataroot') == '':
+            self.cfg.set('Defaults','dataroot', os.environ['PWD'])
+
+        self.dataDir    = self.cfg.get('Defaults','dataroot')
 
         self.prjName    = prjName
         self.prdLv      = prdLv
@@ -55,13 +61,27 @@ class GPM(object):
                                         self.prdLv,
                                         self.prdVer)
 
+        self.cached     = self.cfg.get('Defaults', 'cached')
+        self.cacheDir   = self.cfg.get('Defaults', 'cache_dir')
+
+        fnPath          = {'TRMM': self.cfg.get('Defaults','hdf4_module'),
+                           'GPM' : self.cfg.get('Defaults','hdf5_module')}[prjName.split('.')[0]]
+
+        fnName          = fnPath.split('.')[-1]
+        modPath         = '.'.join( fnPath.split('.')[:-1] )
+
+        self.func_read  = getattr( importlib.import_module( modPath ), fnName )
+
+        print self.func_read
+        print type(self.func_read)
+
+        '''
         self.cacheDir   = os.path.join( self.dataDir,
                                         'cache.dim',
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
 
-        '''
         self.prdDir     = '%s/%s/%s/%s'%(self.dataDir,
                                          self.prjName,
                                          self.prdLv,
@@ -71,11 +91,10 @@ class GPM(object):
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
-        '''
-
 
         self.func_read  = {'TRMM': read_hdf4,
                            'GPM' : read_hdf5}[ prjName.split('.')[0] ]
+        '''
 
         '''
         dictGrp = {'GPM.GMI':'S1',
@@ -103,7 +122,7 @@ class GPM(object):
         srcDir      = os.path.join( self.dataDir, self.prdDir )
 
         assert os.path.exists( srcDir ), '{} is not exists.'.format( srcDir )
-        Granule     = search_granules( srcDir, sDTime, eDTime, BBox, cacheDir=self.cacheDir )
+        Granule     = self.search_granules( srcDir, sDTime, eDTime, BBox )
 
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]
         Lat         = empty( outSize, 'float32')

@@ -19,16 +19,16 @@ from    datetime        import datetime, timedelta
 from    cached_io       import cached_io
 
 
-def get_dtime_trmm(srcPath, cache=False, cache_dir=None):
+def get_dtime_trmm(srcPath, func_read, cache=False, cache_dir=None):
     cio     = cached_io
 
-    Year    = cio( srcPath, 'Year',       cache, cache_dir).astype('int')
-    Month   = cio( srcPath, 'Month',      cache, cache_dir).astype('int')
-    Day     = cio( srcPath, 'DayOfMonth', cache, cache_dir).astype('int')
-    Hour    = cio( srcPath, 'Hour',       cache, cache_dir).astype('int')
-    Minute  = cio( srcPath, 'Minute',     cache, cache_dir).astype('int')
-    Second  = cio( srcPath, 'Second',     cache, cache_dir).astype('int')
-    MicSec  = cio( srcPath, 'MilliSecond',cache, cache_dir).astype('int')*1000
+    Year    = cio( srcPath, 'Year',       func_read, cache, cache_dir).astype('int')
+    Month   = cio( srcPath, 'Month',      func_read, cache, cache_dir).astype('int')
+    Day     = cio( srcPath, 'DayOfMonth', func_read, cache, cache_dir).astype('int')
+    Hour    = cio( srcPath, 'Hour',       func_read, cache, cache_dir).astype('int')
+    Minute  = cio( srcPath, 'Minute',     func_read, cache, cache_dir).astype('int')
+    Second  = cio( srcPath, 'Second',     func_read, cache, cache_dir).astype('int')
+    MicSec  = cio( srcPath, 'MilliSecond',func_read, cache, cache_dir).astype('int')*1000
 
     DTime   = []
     for y,m,d,H,M,S,uS in map(None,Year,Month,Day,Hour,Minute,Second,MicSec):

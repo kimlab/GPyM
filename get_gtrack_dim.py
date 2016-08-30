@@ -22,7 +22,7 @@ from    get_dtime_gpm               import get_dtime_gpm
 from    get_dtime_trmm              import get_dtime_trmm
 
 
-def get_gtrack_dim(srcPath, cache=False, cache_dir=None):
+def get_gtrack_dim(srcPath, func_read, cache=False, cache_dir=None):
     '''
     scan granules and return dimension (T,Y,X) or ground tracks
 
@@ -41,11 +41,11 @@ def get_gtrack_dim(srcPath, cache=False, cache_dir=None):
 
     cache_dir           = os.path.join( cache_dir, yyyy, mm )
 
-    Lat, Lon    = get_location(srcPath, cache, cache_dir)
+    Lat, Lon    = get_location(srcPath, func_read, cache, cache_dir)
     DTime       = cached( srcFName + '.DTime',
                           cache_dir,
                           mode=cache,
-                          verbose=verbose )(get_dtime)(srcPath, cache, cache_dir)
+                          verbose=verbose )(get_dtime)(srcPath, func_read, cache, cache_dir)
 
 
     return DTime, Lat, Lon

@@ -17,11 +17,11 @@ from    optparse        import OptionParser
 from    cached_io       import cached_io
 
 
-def get_location_trmm(srcPath, cache=False, cache_dir=None):
+def get_location_trmm(srcPath, fn_read, cache=False, cache_dir=None):
     cio     = cached_io
 
-    Lat     = cio( srcPath, 'Latitude',  cache, cache_dir )
-    Lon     = cio( srcPath, 'Longitude', cache, cache_dir )
+    Lat     = cio( srcPath, 'Latitude',  fn_read, cache, cache_dir )
+    Lon     = cio( srcPath, 'Longitude', fn_read, cache, cache_dir )
 
     return Lat, Lon
 
