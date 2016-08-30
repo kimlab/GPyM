@@ -24,7 +24,7 @@ setup( name                 = 'GPyM',
        #install_requires     = ['numpy'],
 
        #include_package_data = True,
-       data_files           = [( '',['config'] ),
+       data_files           = [( 'GPyM',['config'] ),
                             ],
 
        license              = 'MIT',
