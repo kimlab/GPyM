@@ -13,6 +13,7 @@
 import  os,sys,time
 import  cPickle         as pickle
 from    optparse        import OptionParser
+from    ConfigParser    import ConfigParser
 
 
 from    numpy           import empty
@@ -26,7 +27,6 @@ from    alien.read_hdf5             import read_hdf5
 
 from    alien.TimeSeries            import bin_bytbound
 
-import  settings
 from    gpm_data                    import GPM_data
 from    search_granules             import search_granules
 from    granule2map                 import granule2map
@@ -34,38 +34,40 @@ from    granule2map                 import granule2map
 
 
 class GPM(object):
-    def __init__(self, prjName, prdLv, prdVer='02'):
+    def __init__(self, prjName, prdLv, prdVer='02', **kwargs):
         '''
         prjName     : e.g.) 'GPM.KuPR'
         prdLv       : e.g.) 'L2'
         prdVer      : e.g.) '02'
         '''
 
-        self.baseDir    = settings.baseDir
-        #self.baseDir    = '/tank/hjkim/GPM/'
+        cfg             = ConfigParser()
+        cfg.read( 'config' )
+
+        self.dataDir    = cfg.get('Directories', 'dataroot')
 
         self.prjName    = prjName
         self.prdLv      = prdLv
         self.prdVer     = prdVer
 
-	self.prdDir     = os.path.join( self.baseDir,
+        self.prdDir     = os.path.join( self.dataDir,
                                         self.prjName,
                                         self.prdLv,
                                         self.prdVer)
 
-        self.cacheDir   = os.path.join( self.baseDir,
+        self.cacheDir   = os.path.join( self.dataDir,
                                         'cache.dim',
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
 
         '''
-        self.prdDir     = '%s/%s/%s/%s'%(self.baseDir,
+        self.prdDir     = '%s/%s/%s/%s'%(self.dataDir,
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
 
-        self.cacheDir   = '%s/cache.dim/%s/%s/%s'%(self.baseDir,
+        self.cacheDir   = '%s/cache.dim/%s/%s/%s'%(self.dataDir,
                                          self.prjName,
                                          self.prdLv,
                                          self.prdVer)
@@ -98,7 +100,7 @@ class GPM(object):
 
         gpmData     = GPM_data()
 
-        srcDir      = os.path.join( self.baseDir, self.prdDir )
+        srcDir      = os.path.join( self.dataDir, self.prdDir )
         Granule     = search_granules( srcDir, sDTime, eDTime, BBox, cacheDir=self.cacheDir )
 
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]
@@ -158,7 +160,7 @@ class GPM(object):
 
     '''
     def get_cacheDir(self, srcPath):
-        cacheDir    = os.path.join( self.baseDir, 'cache.dim').split('/')
+        cacheDir    = os.path.join( self.dataDir, 'cache.dim').split('/')
         cacheDir    = cacheDir + srcPath.split('/')[ len(cacheDir)-1:-1 ]
         cacheDir    = '/'.join( cacheDir )
 
