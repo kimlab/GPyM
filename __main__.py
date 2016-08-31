@@ -29,17 +29,16 @@ def main(args,opts):
     print opts
 
 
+    '''
     prjName = 'GPM.KuPR'
     prdLv   = 'L2'
     prdVer  = '04'
     varName = 'NS/SLV/precipRateESurface'
-
     '''
     prjName = 'GPM.GMI'
     prdLv   = 'L2'
     prdVer  = '03'
     varName = 'S1/surfacePrecipitation'
-    '''
 
 
     #BBox    = [[20,0],[48,180]]   # Radar-AMeDAS domain

@@ -8,7 +8,7 @@ from numpy.lib.format   import open_memmap
 
 
 #def cached(mode='normal',cacheName=None,cacheDir='./cached',compress='lz4'):
-def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=True):
+def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=True, purge_empty_file=True):
     '''
     mode : in ['cached',    # read from cached file if exists
                'skip'  ,    # skip caching process
@@ -28,28 +28,39 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
             compress    = wrapper.compress
             verbose     = wrapper.verbose
 
-            if mode in [False, 'skip']:
-                return func( *args, **kwargs )
+            if mode in [False, 'skip']      :   return func( *args, **kwargs )
 
             if name == None                 :   name = func.__name__
             if not os.path.exists(dir)      :   os.makedirs(dir)
 
             cachePath   = os.path.join(dir, name)
 
+            if compress                     :   import lz4
+
+
             if os.path.exists( cachePath ) and mode != 'update':
-                if compress==False:
-                    cached  = open(cachePath,'r')
-                else:
+
+                if compress == 'lz4':
                     cached  = StringIO( lz4.loads( open(cachePath,'r').read() ) )
 
-                if verbose: print '\t!! Cached from %s'%cachePath
-                return load( cached )
+                else:
+                    cached  = open(cachePath,'r')
 
-            else:
+                if verbose: print '\t!! Cached from %s'%cachePath
+
+                aOut    = load( cached )
+
+                if aOut.shape != () or purge_empty_file == False:
+                    return aOut
+
+                else:
+                    os.remove( cachePath )
+                    raise ValueError, 'empty cache file (erased): %s'%(cachePath)
+
+            if os.path.exists( cachePath ) == False or mode == 'update':
                 aOut    = func( *args, **kwargs )
 
-                if compress=='lz4':
-                    import lz4
+                if compress == 'lz4':
 
                     cached  = StringIO()
                     save( cached, aOut )
@@ -60,6 +71,8 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
 
                 if verbose: print '\t!! Cached to %s'%cachePath
                 return aOut
+
+            raise KeyError, 'failed exception handling for %s and %s'%( cachePath, mode )
 
         return inner
 

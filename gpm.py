@@ -179,14 +179,3 @@ class GPM( SearchGranules ):
         return gpmData
 
 
-    '''
-    def get_cacheDir(self, srcPath):
-        cacheDir    = os.path.join( self.dataDir, 'cache.dim').split('/')
-        cacheDir    = cacheDir + srcPath.split('/')[ len(cacheDir)-1:-1 ]
-        cacheDir    = '/'.join( cacheDir )
-
-        return cacheDir
-    '''
-
-
-

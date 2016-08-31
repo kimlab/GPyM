@@ -13,17 +13,15 @@
 import  os,sys
 from    optparse        import OptionParser
 
+from    numpy           import array
 
-from    cached_io       import cached_io
 
+def get_location_trmm(srcPath, fn_read):
 
-def get_location_trmm(srcPath, fn_read, cache=False, cache_dir=None):
-    cio     = cached_io
+    Lat     = fn_read( srcPath, 'Latitude'  )
+    Lon     = fn_read( srcPath, 'Longitude' )
 
-    Lat     = cio( srcPath, 'Latitude',  fn_read, cache, cache_dir )
-    Lon     = cio( srcPath, 'Longitude', fn_read, cache, cache_dir )
-
-    return Lat, Lon
+    return array( [Lat, Lon] )
 
 
 

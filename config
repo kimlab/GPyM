@@ -1,10 +1,10 @@
 [Defaults]
-dataroot    : /tank/hjkim/GPM/
+dataroot    : 
 
 hdf4_module : alien.read_hdf4.read_hdf4     ; absolute or relative path of function 
 hdf5_module : alien.read_hdf5.read_hdf5     ; absolute or relative path of function 
 
-cached      : False                         ; [True, False]
+cached      : cached                        ; ['cached', 'cached-verbose', 'skip', 'update']
 cache_dir   : %(dataroot)s/cache.dim 
 
 compression : False                         ; [False, 'lz4']

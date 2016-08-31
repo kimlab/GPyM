@@ -13,6 +13,9 @@
 import  os,sys
 from    optparse        import OptionParser
 
+from    datetime        import datetime, timedelta
+from    numpy           import array
+
 from    alien.collection            import cached
 
 from    get_location_gpm            import get_location_gpm
@@ -22,15 +25,17 @@ from    get_dtime_gpm               import get_dtime_gpm
 from    get_dtime_trmm              import get_dtime_trmm
 
 
-def get_gtrack_dim(srcPath, func_read, cache=False, cache_dir=None):
+def get_gtrack_dim(srcPath, fn_read, cache=False, cache_dir=None):
     '''
     scan granules and return dimension (T,Y,X) or ground tracks
 
     cache  : mode of cf.devel.collection.cached
-              ['cached', 'skip', 'update']
+              ['cached', 'cached-verbose', 'skip', 'update']
     '''
 
-    verbose     = False
+    verbose     = False if 'verbose' in cache   \
+             else True
+    verbose     = True
 
     prjName, prdLv, prdVer, yyyy, mm, srcFName  = srcPath.split(os.path.sep)[-6:]
 
@@ -39,17 +44,37 @@ def get_gtrack_dim(srcPath, func_read, cache=False, cache_dir=None):
                    }[ prjName.split('.')[0] ]
 
 
+    print '+ Get Groundtrack Dimension: {}'.format( srcPath )
+
     cache_dir           = os.path.join( cache_dir, yyyy, mm )
 
-    Lat, Lon    = get_location(srcPath, func_read, cache, cache_dir)
-    DTime       = cached( srcFName + '.DTime',
+    Lat, Lon    = cached( srcFName + '.latlon',
                           cache_dir,
                           mode=cache,
-                          verbose=verbose )(get_dtime)(srcPath, func_read, cache, cache_dir)
+                          verbose=verbose )(get_location)(srcPath, fn_read)#, cache, cache_dir)
 
+    Timetuple   = cached( srcFName + '.timetuple',
+                          cache_dir,
+                          mode=cache,
+                          verbose=verbose )(get_dtime   )(srcPath, fn_read)#, cache, cache_dir)
+
+
+    # exception handling for us 1000000 instead of 0 ------------------------------------
+    DTime   = []
+    for y,m,d,H,M,S,uS in Timetuple:
+
+        if uS == 1000000:
+            DTime.append( datetime(y,m,d,H,M,S,0)+timedelta(seconds=1) )
+            print 'Warning [NS/ScanTime/Millisecond] == 1000 : %i %i %i %i %i %i %i'    \
+                  %(y,m,d,H,M,S,uS/1000)
+
+        else:
+            DTime.append( datetime(y,m,d,H,M,S,uS) )
+    # -----------------------------------------------------------------------------------
+
+    DTime       = array( DTime )
 
     return DTime, Lat, Lon
-
 
 
 def main(args,opts):

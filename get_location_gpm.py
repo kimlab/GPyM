@@ -13,12 +13,10 @@
 import  os,sys
 from    optparse        import OptionParser
 
+from    numpy           import array
 
-from    cached_io       import cached_io
 
-
-def get_location_gpm(srcPath, fn_read, cache=False, cache_dir=None):
-    cio     = cached_io
+def get_location_gpm(srcPath, fn_read):
 
     if   'GMI'  in srcPath  : h5Grp = 'S1'
     elif 'DPR'  in srcPath  : h5Grp = 'NS'
@@ -27,10 +25,10 @@ def get_location_gpm(srcPath, fn_read, cache=False, cache_dir=None):
     else:
         raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
 
-    Lat     = cio( srcPath, '%s/Latitude'%h5Grp,  fn_read, cache, cache_dir )
-    Lon     = cio( srcPath, '%s/Longitude'%h5Grp, fn_read, cache, cache_dir )
+    Lat     = fn_read( srcPath, '%s/Latitude'%h5Grp  )
+    Lon     = fn_read( srcPath, '%s/Longitude'%h5Grp )
 
-    return Lat, Lon
+    return array( [Lat, Lon] )
 
 
 

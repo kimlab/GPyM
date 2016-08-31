@@ -14,22 +14,22 @@ import  os,sys
 from    optparse        import OptionParser
 
 from    numpy           import array
-from    datetime        import datetime, timedelta
-
-from    cached_io       import cached_io
+#from    datetime        import datetime, timedelta
 
 
-def get_dtime_trmm(srcPath, func_read, cache=False, cache_dir=None):
-    cio     = cached_io
+def get_dtime_trmm(srcPath, func_read):
 
-    Year    = cio( srcPath, 'Year',       func_read, cache, cache_dir).astype('int')
-    Month   = cio( srcPath, 'Month',      func_read, cache, cache_dir).astype('int')
-    Day     = cio( srcPath, 'DayOfMonth', func_read, cache, cache_dir).astype('int')
-    Hour    = cio( srcPath, 'Hour',       func_read, cache, cache_dir).astype('int')
-    Minute  = cio( srcPath, 'Minute',     func_read, cache, cache_dir).astype('int')
-    Second  = cio( srcPath, 'Second',     func_read, cache, cache_dir).astype('int')
-    MicSec  = cio( srcPath, 'MilliSecond',func_read, cache, cache_dir).astype('int')*1000
+    Year    = func_read( srcPath, 'Year'        ).astype('int')
+    Month   = func_read( srcPath, 'Month'       ).astype('int')
+    Day     = func_read( srcPath, 'DayOfMonth'  ).astype('int')
+    Hour    = func_read( srcPath, 'Hour'        ).astype('int')
+    Minute  = func_read( srcPath, 'Minute'      ).astype('int')
+    Second  = func_read( srcPath, 'Second'      ).astype('int')
+    MicSec  = func_read( srcPath, 'MilliSecond' ).astype('int')*1000
 
+    return array( [Year, Month, Day, Hour, Minute, Second, MicSec] ).T
+
+    '''
     DTime   = []
     for y,m,d,H,M,S,uS in map(None,Year,Month,Day,Hour,Minute,Second,MicSec):
 
@@ -41,6 +41,7 @@ def get_dtime_trmm(srcPath, func_read, cache=False, cache_dir=None):
             DTime.append( datetime(y,m,d,H,M,S,uS) )
 
     return array( DTime )
+    '''
 
 
 

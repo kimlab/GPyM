@@ -14,13 +14,10 @@ import  os,sys
 from    optparse        import OptionParser
 
 from    numpy           import array
-from    datetime        import datetime, timedelta
-
-from    cached_io       import cached_io
+#from    datetime        import datetime, timedelta
 
 
-def get_dtime_gpm(srcPath, fn_read, cache=False, cache_dir=None):
-    cio     = cached_io
+def get_dtime_gpm(srcPath, fn_read):
 
     if   'GMI'  in srcPath  : h5Grp = 'S1'
     elif 'DPR'  in srcPath  : h5Grp = 'NS'
@@ -29,14 +26,17 @@ def get_dtime_gpm(srcPath, fn_read, cache=False, cache_dir=None):
     else:
         raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
 
-    Year    = cio( srcPath,'%s/ScanTime/Year'%h5Grp,       fn_read,cache,cache_dir).astype('int')
-    Month   = cio( srcPath,'%s/ScanTime/Month'%h5Grp,      fn_read,cache,cache_dir).astype('int')
-    Day     = cio( srcPath,'%s/ScanTime/DayOfMonth'%h5Grp, fn_read,cache,cache_dir).astype('int')
-    Hour    = cio( srcPath,'%s/ScanTime/Hour'%h5Grp,       fn_read,cache,cache_dir).astype('int')
-    Minute  = cio( srcPath,'%s/ScanTime/Minute'%h5Grp,     fn_read,cache,cache_dir).astype('int')
-    Second  = cio( srcPath,'%s/ScanTime/Second'%h5Grp,     fn_read,cache,cache_dir).astype('int')
-    MicSec  = cio( srcPath,'%s/ScanTime/MilliSecond'%h5Grp,fn_read,cache,cache_dir).astype('int')*1000
+    Year    = fn_read( srcPath,'%s/ScanTime/Year'%h5Grp        ).astype('int')
+    Month   = fn_read( srcPath,'%s/ScanTime/Month'%h5Grp       ).astype('int')
+    Day     = fn_read( srcPath,'%s/ScanTime/DayOfMonth'%h5Grp  ).astype('int')
+    Hour    = fn_read( srcPath,'%s/ScanTime/Hour'%h5Grp        ).astype('int')
+    Minute  = fn_read( srcPath,'%s/ScanTime/Minute'%h5Grp      ).astype('int')
+    Second  = fn_read( srcPath,'%s/ScanTime/Second'%h5Grp      ).astype('int')
+    MicSec  = fn_read( srcPath,'%s/ScanTime/MilliSecond'%h5Grp ).astype('int')*1000
 
+    return array( [Year, Month, Day, Hour, Minute, Second, MicSec] ).T
+
+    '''
     DTime   = []
     for y,m,d,H,M,S,uS in map(None,Year,Month,Day,Hour,Minute,Second,MicSec):
 
@@ -48,6 +48,7 @@ def get_dtime_gpm(srcPath, fn_read, cache=False, cache_dir=None):
             DTime.append( datetime(y,m,d,H,M,S,uS) )
 
     return array( DTime )
+    '''
 
 
 def main(args,opts):

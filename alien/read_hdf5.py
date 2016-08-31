@@ -37,7 +37,7 @@ def read_hdf5(srcPath, varName, Slice=None, verbose=True):
         raise ValueError
 
     if verbose  == True:
-        print '\t[READ_HDF5] %s %s -> %s'%( srcPath, h5Var.shape, aOut.shape)
+        print '\t[READ_HDF5] %s [%s] -> %s'%( srcPath, varName, aOut.shape)
 
     h5.close()
 

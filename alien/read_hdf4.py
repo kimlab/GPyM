@@ -46,7 +46,8 @@ def read_hdf4(srcPath, varName, Slice=None, verbose=True):
 
 
     if verbose  == True:
-        print '\t[READ_HDF4] %s %s -> %s'%( srcPath, h4Var.dimensions(), aOut.shape)
+        print '\t[READ_HDF4] %s [%s] -> %s'%( srcPath, varName, aOut.shape)
+       # print '\t[READ_HDF4] %s %s -> %s'%( srcPath, h4Var.dimensions(), aOut.shape)
 
     #h4.close()
 

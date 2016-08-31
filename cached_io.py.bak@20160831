@@ -28,7 +28,7 @@ def cached_io( srcPath, varName, func_read, mode='skip', cacheDir=None):
 
 
     if aOut.shape == ():
-        cachePath = os.path.join(cacheDir, cacheFName) 
+        cachePath = os.path.join(cacheDir, cacheFName)
         os.remove( cachePath )
 
         raise ValueError, 'blank cache file (erased): %s'%(cachePath)
