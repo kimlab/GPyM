@@ -1,5 +1,5 @@
 [![DOI](https://zenodo.org/badge/19166/kimlab/GPyM.svg)](https://zenodo.org/badge/latestdoi/19166/kimlab/GPyM)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](LICENSE.md)
 
 
 # GPyM
