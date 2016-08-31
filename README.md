@@ -171,3 +171,10 @@ colorbar()
 
 ![png](./doc/output_7_1.png)
 
+### History 
+#### 0.60b
+* [NEW] cache option @ config
+* [NEW] cache_directory option @ config
+* [NEW] compress (dimension only) option @ config
+* [UPGRADE] enhanced console-log
+* [UPGRADE] remove cache routine from get_location* and get_dtime*
