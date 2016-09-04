@@ -46,10 +46,11 @@ def main(args,opts):
     res     = 0.1
     delT    = timedelta(seconds=60*60)
 
-    sDTime  = datetime( 2014,4,30 )
-    #eDTime  = datetime( 2014,4,2) #,0,59)
-    eDTime  = datetime( 2014,5,3 )
-#    eDTime  = datetime( 2014,5,15 )
+#    sDTime  = datetime( 2014,4,30 )
+#    eDTime  = datetime( 2014,5,3 )
+    sDTime  = datetime( 2014,4,3,22 )
+    sDTime  = datetime( 2014,4,4,0 )
+    eDTime  = datetime( 2014,4,4,2 )
 
     print sDTime, eDTime
 
@@ -67,6 +68,8 @@ def main(args,opts):
                   0.1,
                   timedelta(seconds=3600*24))
     '''
+
+    sys.exit()
 
     A   = np.ma.masked_less_equal( np.array( JP.griddata ), 0 )
 

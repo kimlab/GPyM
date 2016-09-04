@@ -33,17 +33,15 @@ class SearchGranules( object ):
 
         DTime, Lat, Lon     = zip(*gtrkDim)
 
-
         Granule     = []
         for dtime, lat, lon, path in map(None, DTime, Lat, Lon, srcPATH):
 
-            mskLat  = ma.masked_outside( lat, BBox[0][0], BBox[1][0] )#.mask
-            mskLat  = mskLat.mask
+            mskLat  = ma.masked_outside( lat, BBox[0][0], BBox[1][0] ).mask
             mskLon  = ma.masked_outside( lon, BBox[0][1], BBox[1][1] ).mask
             mskTime = ma.masked_outside( dtime, sDTime, eDTime).mask
 
-            mask    = (mskLat + mskLon).any(1) + mskTime
-            #mask    = (mskLat + mskLon).all(1) + mskTime
+            #mask    = (mskLat + mskLon).any(1) + mskTime
+            mask    = (mskLat + mskLon).all(1) + mskTime
 
             if not mask.all():
 
