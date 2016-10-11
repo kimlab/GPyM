@@ -44,7 +44,7 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
                     cached  = StringIO( lz4.loads( open(cachePath,'r').read() ) )
 
                 else:
-                    cached  = cachePath + '.npy'
+                    cached  = cachePath
                     #cached  = open(cachePath,'r')
 
                 if verbose: print '\t!! Cached from %s'%cachePath
@@ -68,8 +68,9 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
                     open(cachePath,'w').write( lz4.dumps( cached.getvalue() ) )
 
                 else:
-                    save( cachePath, aOut )
-                    #save( open(cachePath,'w'), aOut )
+                    fCache  = open(cachePath,'wb')
+                    save( fCache, aOut )
+                    fCache.close()
 
                 if verbose: print '\t!! Cached to %s'%cachePath
                 return aOut
