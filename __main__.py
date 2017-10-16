@@ -50,7 +50,7 @@ def main(args,opts):
 #    eDTime  = datetime( 2014,5,3 )
     sDTime  = datetime( 2014,4,3,22 )
     sDTime  = datetime( 2014,4,4,0 )
-    eDTime  = datetime( 2014,4,4,2 )
+    eDTime  = datetime( 2014,4,5,0 )
 
     print sDTime, eDTime
 
@@ -69,7 +69,25 @@ def main(args,opts):
                   timedelta(seconds=3600*24))
     '''
 
+    for d in JP.griddata:
+        print d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum()
+    #sys.exit()
+
+    H   = np.arange(25)
+    for h0,h1 in zip(H[:-1], H[1:]):
+        offset = 0 if h1 !=24 else 1
+
+        sdtime = datetime(2014,4,4,h0)
+        edtime = datetime(2014,4,4 + offset,h1%24)
+
+        gpmJP   = gpm(varName, sdtime, edtime, BBox, 0.2 )
+
+        if hasattr( gpmJP, 'griddata'):
+            for d in gpmJP.griddata:
+                print d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum()
+
     sys.exit()
+
 
     A   = np.ma.masked_less_equal( np.array( JP.griddata ), 0 )
 
