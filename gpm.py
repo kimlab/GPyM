@@ -124,6 +124,10 @@ class GPM( SearchGranules ):
         assert os.path.exists( srcDir ), '{} is not exists.'.format( srcDir )
         Granule     = self.search_granules( srcDir, sDTime, eDTime, BBox )
 
+        if len(Granule) == 0:
+            print '! Warning ! no data extracted'
+            return None
+
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]
         Lat         = empty( outSize, 'float32')
         Lon         = empty( outSize, 'float32')
