@@ -11,11 +11,15 @@
 
 
 import  os,sys
-from    optparse        import OptionParser
+from    optparse            import OptionParser
+
+from    datetime            import datetime
+
+from    write_to_nc         import WriteNC
 
 
+class GPM_data( WriteNC ):
 
-class GPM_data(object):
     def __init__(self):
         self.srcPath    = []
         self.recLen     = []
@@ -27,7 +31,19 @@ class GPM_data(object):
         self.griddata   = []
         self.grid       = []
 
+        self.torigin        = datetime( 1901,1,1)
+        self.missing_value  = -9999.9
 
+
+    def tofile(self, outpath, filetype='nc'):
+
+        iofunc  = { 'nc': self.toncdf,
+                   }
+
+        if filetype not in iofunc:
+            raise TypeError, '%s is not supported yet.'%filetype
+
+        iofunc[ filetype ]( outpath )
 
 
 
