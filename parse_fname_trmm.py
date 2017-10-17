@@ -13,7 +13,7 @@
 import  os, sys, re
 from    optparse        import OptionParser
 
-from    datetime        import timedelta
+from    datetime        import datetime, timedelta
 
 
 def parse_fname_trmm(fName, ATTR):
