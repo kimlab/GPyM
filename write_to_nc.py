@@ -12,9 +12,8 @@
 
 import  os,sys
 from    optparse                import OptionParser
-from    cf.util.LOGGER          import *
 
-from    cf.util                 import OrderedDict
+from    collections             import OrderedDict
 
 from    netCDF4                 import Dataset
 import  numpy  as np
@@ -112,34 +111,5 @@ class WriteNC( object ):
     def set_attributes( self, ncvars ):
 
         ncvars['time'].units    = 'seconds since %s'%self.torigin.strftime("%Y-%m-%d %H:%M:%S")
-
-
-
-@ETA
-def main(args,opts):
-    print args
-    print opts
-
-    return
-
-
-if __name__=='__main__':
-    usage   = 'usage: %prog [options] arg'
-    version = '%prog 1.0'
-
-    parser  = OptionParser(usage=usage,version=version)
-
-#    parser.add_option('-r','--rescan',action='store_true',dest='rescan',
-#                      help='rescan all directory to find missing file')
-
-    (options,args)  = parser.parse_args()
-
-#    if len(args) == 0:
-#        parser.print_help()
-#    else:
-#        main(args,options)
-
-#    LOG     = LOGGER()
-    main(args,options)
 
 

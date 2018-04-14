@@ -41,9 +41,10 @@ class GPM( SearchGranules ):
         prdLv       : e.g.) 'L2'
         prdVer      : e.g.) '02'
         '''
+        modroot     = os.path.dirname(__file__)
 
         self.cfg        = SafeConfigParser( os.environ )
-        self.cfg.read( 'config' )
+        self.cfg.read( os.path.join(modroot, 'config') )
 
         self.cfg._sections['Defaults'].update( kwargs )
 
@@ -71,9 +72,6 @@ class GPM( SearchGranules ):
         modPath         = '.'.join( fnPath.split('.')[:-1] )
 
         self.func_read  = getattr( importlib.import_module( modPath ), fnName )
-
-        print self.func_read
-        print type(self.func_read)
 
         '''
         self.cacheDir   = os.path.join( self.dataDir,
