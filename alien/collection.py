@@ -8,7 +8,7 @@ from numpy.lib.format   import open_memmap
 
 
 #def cached(mode='normal',cacheName=None,cacheDir='./cached',compress='lz4'):
-def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=True, purge_empty_file=True):
+def cached(name=None, cdir='./cached', compress=False, mode='cached', verbose=True, purge_empty_file=True):
     '''
     mode : in ['cached',    # read from cached file if exists
                'skip'  ,    # skip caching process
@@ -24,19 +24,18 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
         def inner(*args, **kwargs):
             mode        = wrapper.mode
             name        = wrapper.name
-            dir         = wrapper.dir
+            cdir        = wrapper.cdir
             compress    = wrapper.compress
             verbose     = wrapper.verbose
 
             if mode in [False, 'skip']      :   return func( *args, **kwargs )
 
             if name == None                 :   name = func.__name__
-            if not os.path.exists(dir)      :   os.makedirs(dir)
+            if not os.path.exists(cdir)      :   os.makedirs(cdir)
 
-            cachePath   = os.path.join(dir, name)
+            cachePath   = os.path.join(cdir, name)
 
             if compress                     :   import lz4
-
 
             if os.path.exists( cachePath ) and mode != 'update':
 
@@ -81,7 +80,7 @@ def cached(name=None, dir='./cached', compress=False, mode='cached', verbose=Tru
 
     wrapper.name        = name
     wrapper.mode        = mode
-    wrapper.dir         = dir
+    wrapper.cdir        = cdir
     wrapper.compress    = compress
     wrapper.verbose     = verbose
 

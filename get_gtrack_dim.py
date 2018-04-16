@@ -46,7 +46,7 @@ def get_gtrack_dim(srcPath, fn_read, cache=False, cache_dir=None):
 
     print '+ Get Groundtrack Dimension: {}'.format( srcPath )
 
-    cache_dir           = os.path.join( cache_dir, yyyy, mm )
+    cache_dir           = os.path.join( cache_dir, prjName, prdLv, prdVer, yyyy, mm )
 
     Lat, Lon    = cached( srcFName + '.latlon',
                           cache_dir,

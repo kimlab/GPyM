@@ -17,7 +17,8 @@ from    pyhdf           import SD
 
 
 def read_hdf4(srcPath, varName, Slice=None, verbose=True):
-    h4      = SD.SD(srcPath)# 'r')
+
+    h4      = SD.SD(srcPath)#, SD.SDC.READ)
 
     if Slice == None:   Slice = slice(None,None,None)
 
