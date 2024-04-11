@@ -15,8 +15,8 @@ from    optparse        import OptionParser
 
 
 def main(args,opts):
-    print args
-    print opts
+    print(args)
+    print(opts)
 
     return
 

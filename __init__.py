@@ -13,7 +13,7 @@
 import  os,sys
 from    optparse        import OptionParser
 
-from    gpm             import GPM
+from    .gpm             import GPM
 from    granule2map     import granule2map
 
 

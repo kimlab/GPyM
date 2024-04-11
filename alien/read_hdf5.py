@@ -26,18 +26,18 @@ def read_hdf5(srcPath, varName, Slice=None, verbose=True):
         aOut    = h5Var[Slice]
 
     except:
-        print '!'*80
-        print 'I/O Error'
-        print 'Blank File? %s'%srcPath
-        print 'Blank array will be returned [ %s ]'%varName
-        print h5Var.shape
-        print Slice
-        print '!'*80
+        print('!'*80)
+        print('I/O Error')
+        print('Blank File? %s'%srcPath)
+        print('Blank array will be returned [ %s ]'%varName)
+        print(h5Var.shape)
+        print(Slice)
+        print('!'*80)
 
         raise ValueError
 
     if verbose  == True:
-        print '\t[READ_HDF5] %s [%s] -> %s'%( srcPath, varName, aOut.shape)
+        print('\t[READ_HDF5] %s [%s] -> %s'%( srcPath, varName, aOut.shape))
 
     h5.close()
 
@@ -45,8 +45,8 @@ def read_hdf5(srcPath, varName, Slice=None, verbose=True):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

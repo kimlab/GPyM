@@ -23,7 +23,7 @@ def get_location_gpm(srcPath, fn_read):
     elif 'KuPR' in srcPath  : h5Grp = 'NS'
     elif 'KaPR' in srcPath  : h5Grp = 'MS'
     else:
-        raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
+        raise ValueError('unknown hdf5 group [%s] for %s'%(h5Grp, srcPath))
 
     Lat     = fn_read( srcPath, '%s/Latitude'%h5Grp  )
     Lon     = fn_read( srcPath, '%s/Longitude'%h5Grp )
@@ -33,8 +33,8 @@ def get_location_gpm(srcPath, fn_read):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

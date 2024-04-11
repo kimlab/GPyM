@@ -35,19 +35,19 @@ def read_hdf4(srcPath, varName, Slice=None, verbose=True):
         aOut    = h4Var[:][Slice]
 
     except:
-        print '!'*80
-        print 'I/O Error'
-        print 'Blank File? %s'%srcPath
-        print 'Blank array will be returned [ %s ]'%varName
-        print h4Var.dimensions()
-        print Slice
-        print '!'*80
+        print('!'*80)
+        print('I/O Error')
+        print('Blank File? %s'%srcPath)
+        print('Blank array will be returned [ %s ]'%varName)
+        print(h4Var.dimensions())
+        print(Slice)
+        print('!'*80)
 
         #raise ValueError
 
 
     if verbose  == True:
-        print '\t[READ_HDF4] %s [%s] -> %s'%( srcPath, varName, aOut.shape)
+        print('\t[READ_HDF4] %s [%s] -> %s'%( srcPath, varName, aOut.shape))
        # print '\t[READ_HDF4] %s %s -> %s'%( srcPath, h4Var.dimensions(), aOut.shape)
 
     #h4.close()
@@ -57,8 +57,8 @@ def read_hdf4(srcPath, varName, Slice=None, verbose=True):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

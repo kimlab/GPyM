@@ -24,7 +24,7 @@ def get_dtime_gpm(srcPath, fn_read):
     elif 'KuPR' in srcPath  : h5Grp = 'NS'
     elif 'KaPR' in srcPath  : h5Grp = 'MS'
     else:
-        raise ValueError, 'unknown hdf5 group [%s] for %s'%(h5Grp, srcPath)
+        raise ValueError('unknown hdf5 group [%s] for %s'%(h5Grp, srcPath))
 
     Year    = fn_read( srcPath,'%s/ScanTime/Year'%h5Grp        ).astype('int')
     Month   = fn_read( srcPath,'%s/ScanTime/Month'%h5Grp       ).astype('int')
@@ -52,8 +52,8 @@ def get_dtime_gpm(srcPath, fn_read):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

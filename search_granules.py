@@ -53,17 +53,17 @@ class SearchGranules( object ):
                                 idx
                                 ])
 
-                print '* [V] ground track dimension (%s): %s'%(self.cached,path)
+                print('* [V] ground track dimension (%s): %s'%(self.cached,path))
 
             else:
-                print '* [_] ground track dimension (%s): %s'%(self.cached,path)
+                print('* [_] ground track dimension (%s): %s'%(self.cached,path))
 
         summary = '| [{}] granules intersects domain {} out of [{}] total between ({}-{}) |\n'    \
                   .format( len(Granule), tuple(BBox), len(srcPATH), sDTime, eDTime )
 
         line    = '+' + '-'*len(summary[3:]) + '+\n'
 
-        print line + summary + line
+        print(line + summary + line)
 
         return Granule
 
@@ -71,8 +71,8 @@ class SearchGranules( object ):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

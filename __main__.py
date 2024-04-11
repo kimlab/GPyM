@@ -25,8 +25,8 @@ from mpl_toolkits.basemap   import Basemap
 
 @ETA
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
 
     '''
@@ -52,7 +52,7 @@ def main(args,opts):
     sDTime  = datetime( 2014,4,4,0 )
     eDTime  = datetime( 2014,4,5,0 )
 
-    print sDTime, eDTime
+    print (sDTime, eDTime)
 
 
     gpm     = GPM(prjName, prdLv, prdVer)
@@ -70,7 +70,7 @@ def main(args,opts):
     '''
 
     for d in JP.griddata:
-        print d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum()
+        print (d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum())
     #sys.exit()
 
     H   = np.arange(25)
@@ -84,7 +84,7 @@ def main(args,opts):
 
         if hasattr( gpmJP, 'griddata'):
             for d in gpmJP.griddata:
-                print d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum()
+                print (d.shape, d.max(), d.min(), np.ma.masked_less_equal(d,0).sum())
 
     sys.exit()
 
@@ -125,13 +125,13 @@ def main(args,opts):
 
     show()
 
-    print A.shape, A.max(), A.min()
-    for a in A: print a.shape, a.max(), a.min()
-    print gpmJP.data.min(), gpmJP.data.max()
+    print (A.shape, A.max(), A.min())
+    for a in A: print (a.shape, a.max(), a.min())
+    print (gpmJP.data.min(), gpmJP.data.max())
 
 
     for a in gpmJP.griddata:
-        print a.shape
+        print (a.shape)
         figure()
         M.imshow( ma.masked_equal(array(a), -9999.9),vmin=0,vmax=10);colorbar()
         M.drawcoastlines()

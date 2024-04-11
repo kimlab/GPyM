@@ -40,7 +40,7 @@ def granule2map(lat, lon, aSrc, BBox=None, res=0.1, verbose=True):
     #aOut    = upscale(aOut, (Grid.lat.size/nFold, Grid.lon.size/nFold), mode='s', missing=-9999.9)
 
     if verbose:
-        print '\t[GRANULE2MAP] Domain:%s %s -> %s'%( BBox, aSrc.shape, aOut.shape)
+        print('\t[GRANULE2MAP] Domain:%s %s -> %s'%( BBox, aSrc.shape, aOut.shape))
 
     return aOut
 

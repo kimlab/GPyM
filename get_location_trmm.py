@@ -26,8 +26,8 @@ def get_location_trmm(srcPath, fn_read):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

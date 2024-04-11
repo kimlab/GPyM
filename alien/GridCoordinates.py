@@ -2,7 +2,7 @@ import os,sys
 from        numpy           import arange, linspace, meshgrid, zeros, fromfile, concatenate
 from        numpy           import loadtxt, argmax
 
-from    unique_counts       import unique_counts
+from    .unique_counts       import unique_counts
 
 def conv180to360(lon):
     ''' convert between -180~180 and 0~360 '''
@@ -34,7 +34,7 @@ def detect_map_direction(aSrc, yAxis=-2, xAxis=-1):
     unique_cnt_Y0   = unique_counts(aSrc[ YsampleIdx])[0]
     unique_cnt_Y1   = unique_counts(aSrc[-YsampleIdx])[0]
 
-    print most_frq_val_Y1, most_frq_val_Y0
+    print(most_frq_val_Y1, most_frq_val_Y0)
 
     return
 
@@ -157,7 +157,7 @@ class GridCoordinates(object):
     def get_domain_data(self, aSrc, BBox, mode='nearest', shift_lon=False):
 
         bbox_idx    = self.get_domain_idx( BBox, mode=mode, shift_lon=shift_lon )
-        print 'bbox_idx', bbox_idx
+        print('bbox_idx', bbox_idx)
 
         return aSrc[...,
                     bbox_idx[0][0]:bbox_idx[1][0],
@@ -187,25 +187,25 @@ class GridCoordinates(object):
 def main(*args):
 
     grid    = GridCoordinates('u05')
-    print '+'*80
+    print('+'*80)
     grid    = GridCoordinates('v')
 
     vasc    = VASClimO('10')
     vasc(1951,2000)
 
     figure();imshow(vasc.data.mean(0));colorbar()
-    print vasc.get_idx( 38.5, -0.5 )
-    print vasc.get_idx( 38.5, 359.5, shift_lon=True )
+    print(vasc.get_idx( 38.5, -0.5 ))
+    print(vasc.get_idx( 38.5, 359.5, shift_lon=True ))
 
     BBox        = [[66.5,85.5],[70.5,170.5]]
     BBox        = [[-10.5,10.5],[-60.5,-30.5]]
     aSrc        = vasc.get_domain_data(vasc.data, BBox, shift_lon=True)
 
-    print vasc.data.shape
-    print vasc.yr.shape
-    print aSrc.shape
+    print(vasc.data.shape)
+    print(vasc.yr.shape)
+    print(aSrc.shape)
 
-    print vasc.data.max()
+    print(vasc.data.max())
 
     figure();plot( ma.masked_equal( aSrc,-999).mean(-1).mean(-1) )
 

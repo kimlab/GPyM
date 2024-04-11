@@ -5,7 +5,7 @@ gpmDir  = ''
 
 if gpmDir == '':
     print gpmDir
-    raise ValueError, 'gpmDir should be specificed'
+    raise ValueError('gpmDir should be specificed')
 
 setupFile   = open('settings.py','w')
 setupFile.write('baseDir = "%s"\n'%gpmDir)

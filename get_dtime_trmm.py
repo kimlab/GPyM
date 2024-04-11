@@ -46,8 +46,8 @@ def get_dtime_trmm(srcPath, func_read):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

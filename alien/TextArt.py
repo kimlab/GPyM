@@ -1,5 +1,5 @@
 import sys
-from AnsiFormatter  import AnsiFormatter
+from .AnsiFormatter  import AnsiFormatter
 
 
 class TextArt(object):

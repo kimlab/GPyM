@@ -12,13 +12,13 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    LOGGER          import *
+from    .LOGGER          import *
 
 
 @ETA
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

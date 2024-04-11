@@ -29,7 +29,7 @@ def get_path(srcDir, sDTime, eDTime):
 
 
     if sDTime == eDTime:
-        raise ValueError, '%s == %s'%(sDTime, eDTime)
+        raise ValueError('%s == %s'%(sDTime, eDTime))
 
 
 
@@ -47,7 +47,7 @@ def get_path(srcDir, sDTime, eDTime):
 
     for srcDir in srcDIR:
         if not os.path.exists(srcDir):
-            print 'Warning [%s] directory does not exists!'%srcDir
+            print('Warning [%s] directory does not exists!'%srcDir)
             continue
 
         for srcFName in sorted( os.listdir(srcDir) ):
@@ -64,8 +64,8 @@ def get_path(srcDir, sDTime, eDTime):
 
 
 def main(args,opts):
-    print args
-    print opts
+    print (args)
+    print (opts)
 
     return
 

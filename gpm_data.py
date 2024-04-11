@@ -41,7 +41,7 @@ class GPM_data( WriteNC ):
                    }
 
         if filetype not in iofunc:
-            raise TypeError, '%s is not supported yet.'%filetype
+            raise TypeError('%s is not supported yet.'%filetype)
 
         iofunc[ filetype ]( outpath )
 

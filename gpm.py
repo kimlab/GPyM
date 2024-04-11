@@ -12,10 +12,9 @@
 
 import  os, sys, importlib
 import  time
-import  cPickle         as pickle
+import  pickle
 from    optparse        import OptionParser
-from    ConfigParser    import SafeConfigParser
-
+from configparser import SafeConfigParser
 
 from    numpy           import empty
 
@@ -123,7 +122,7 @@ class GPM( SearchGranules ):
         Granule     = self.search_granules( srcDir, sDTime, eDTime, BBox )
 
         if len(Granule) == 0:
-            print '! Warning ! no data extracted'
+            print ('! Warning ! no data extracted')
             return None
 
         outSize     = sum( [ len(gra[2]) for gra in Granule ] ), Granule[0][2].shape[1]

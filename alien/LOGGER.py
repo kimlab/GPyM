@@ -1,8 +1,8 @@
 import os,sys,time
 from datetime       import datetime
-from TextArt        import TextArt
-from getName        import getFuncName, getCallerName
-from AnsiFormatter  import AnsiFormatter
+from .TextArt        import TextArt
+from .getName        import getFuncName, getCallerName
+from .AnsiFormatter  import AnsiFormatter
 
 
 def ETA(func):
@@ -21,7 +21,7 @@ def ETA(func):
                        ),
                    ta.ln)
 
-        print clr+''.join(HEADER)
+        print(clr+''.join(HEADER))
 
         sTime   = datetime.now()
         retval  = func(*args,**kwargs)
@@ -37,7 +37,7 @@ def ETA(func):
                    '\t  - lapse  %-53s | ETA |\n'%(eTime-sTime),
                    ta.Ln)
 
-        print clr+'%s'*len(FOOTER)%FOOTER
+        print(clr+'%s'*len(FOOTER)%FOOTER)
 
         return retval
 
@@ -164,30 +164,30 @@ if __name__=='__main__':
 
     @ETA
     def test(text):
-        print 'print in "test" func: %s'%(text*3)
+        print('print in "test" func: %s'%(text*3))
         return text,text
 
     def main(*args):
-        print 'print in "main" func: %s'%str(args)
-        print test('gogogo ')
+        print('print in "main" func: %s'%str(args))
+        print(test('gogogo '))
 
 
     LOG = LOGGER()
 
     LOG.clr('r')
-    print 'test_red'
+    print('test_red')
     LOG.clr('b')
-    print 'test_blue'
-    print 'LOG.off'
+    print('test_blue')
+    print('LOG.off')
     LOG.off
-    print 'test.off'
+    print('test.off')
     LOG.on
-    print 'LOG.on'
+    print('LOG.on')
 
     LOG.clr('g')
-    print 'test_green'
+    print('test_green')
     LOG.clr('reset')
-    print 'test @ETA'
+    print('test @ETA')
     main(*sys.argv)
 
 
