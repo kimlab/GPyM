@@ -12,11 +12,11 @@
 
 import  os,sys
 from    optparse        import OptionParser
-from    alien.LOGGER    import *
+from    .alien.LOGGER    import *
 
 from    datetime        import datetime, timedelta
 
-from    gpm             import GPM
+from    .gpm             import GPM
 
 import pylab as pl
 import numpy as np
@@ -37,7 +37,7 @@ def main(args,opts):
     '''
     prjName = 'GPM.GMI'
     prdLv   = 'L2'
-    prdVer  = '03'
+    prdVer  = '05'
     varName = 'S1/surfacePrecipitation'
 
 

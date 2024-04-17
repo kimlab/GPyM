@@ -80,8 +80,8 @@ class GridCoordinates(object):
         nI        = height/vres
 
 
-        lon = linspace(left+hoff,right-hoff, nJ)
-        lat = linspace(bottom+voff, top-voff, nI)
+        lon = linspace(left+hoff,right-hoff, int(nJ))
+        lat = linspace(bottom+voff, top-voff, int(nI))
 
         self.mapType        = mapType
 

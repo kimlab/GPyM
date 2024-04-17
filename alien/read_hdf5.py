@@ -70,4 +70,6 @@ if __name__=='__main__':
 #    LOG     = LOGGER()
     main(args,options)
 
+__all__ = ['read_hdf5']
+
 

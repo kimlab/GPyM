@@ -15,8 +15,8 @@ from    optparse        import OptionParser
 
 from    numpy           import arange, ma
 
-from    get_path        import get_path
-from    get_gtrack_dim  import get_gtrack_dim
+from    .get_path        import get_path
+from    .get_gtrack_dim  import get_gtrack_dim
 
 
 class SearchGranules( object ):
@@ -34,7 +34,7 @@ class SearchGranules( object ):
         DTime, Lat, Lon     = zip(*gtrkDim)
 
         Granule     = []
-        for dtime, lat, lon, path in map(None, DTime, Lat, Lon, srcPATH):
+        for dtime, lat, lon, path in zip(DTime, Lat, Lon, srcPATH):
 
             mskLat  = ma.masked_outside( lat, BBox[0][0], BBox[1][0] ).mask
             mskLon  = ma.masked_outside( lon, BBox[0][1], BBox[1][1] ).mask

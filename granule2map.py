@@ -15,9 +15,9 @@ from    optparse        import OptionParser
 
 from    numpy           import zeros, ma
 
-from    alien.upscale           import upscale
-from    alien.nearest_idx       import nearest_idx
-from    alien.GridCoordinates   import GridCoordinates
+from    .alien.upscale           import upscale
+from    .alien.nearest_idx       import nearest_idx
+from    .alien.GridCoordinates   import GridCoordinates
 
 
 def granule2map(lat, lon, aSrc, BBox=None, res=0.1, verbose=True):

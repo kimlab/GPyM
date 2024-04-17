@@ -14,22 +14,22 @@ import  os, sys, importlib
 import  time
 import  pickle
 from    optparse        import OptionParser
-from configparser import SafeConfigParser
+from configparser import ConfigParser
 
 from    numpy           import empty
 
-from    alien.dtrange               import dtrange
+from    .alien.dtrange               import dtrange
 
-from    alien.GridCoordinates       import GridCoordinates
+from    .alien.GridCoordinates       import GridCoordinates
 
 #from    alien.read_hdf4             import read_hdf4
-#from    alien.read_hdf5             import read_hdf5
+from    .alien.read_hdf5             import read_hdf5
 
-from    alien.TimeSeries            import bin_bytbound
+from    .alien.TimeSeries            import bin_bytbound
 
-from    gpm_data                    import GPM_data
-from    search_granules             import SearchGranules
-from    granule2map                 import granule2map
+from    .gpm_data                    import GPM_data
+from    .search_granules             import SearchGranules
+from    .granule2map                 import granule2map
 
 
 
@@ -38,17 +38,17 @@ class GPM( SearchGranules ):
         '''
         prjName     : e.g.) 'GPM.KuPR'
         prdLv       : e.g.) 'L2'
-        prdVer      : e.g.) '02'
+        prdVer      : e.g.) '05'
         '''
         modroot     = os.path.dirname(__file__)
 
-        self.cfg        = SafeConfigParser( os.environ )
+        self.cfg        = ConfigParser( os.environ , comment_prefixes=(';',))
         self.cfg.read( os.path.join(modroot, 'config') )
 
         self.cfg._sections['Defaults'].update( kwargs )
 
         if self.cfg.get( 'Defaults','dataroot') == '':
-            self.cfg.set('Defaults','dataroot', os.environ['PWD'])
+            self.cfg.set('Defaults','dataroot', os.environ['PWD']) 
 
         self.dataDir    = self.cfg.get('Defaults','dataroot')
 

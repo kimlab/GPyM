@@ -15,7 +15,7 @@ from    optparse            import OptionParser
 
 from    datetime            import datetime
 
-from    write_to_nc         import WriteNC
+from    .write_to_nc         import WriteNC
 
 
 class GPM_data( WriteNC ):

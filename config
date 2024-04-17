@@ -1,15 +1,18 @@
 [Defaults]
-dataroot    : 
+dataroot    : /lustre/home/sasha/gpym_library/GPM
 
-hdf4_module : GPyM.alien.read_hdf4.read_hdf4     ; absolute path of function 
-hdf5_module : GPyM.alien.read_hdf5.read_hdf5     ; absolute path of function 
+; absolute path of function 
+hdf4_module : GPyM.alien.read_hdf4.read_hdf4     
+hdf5_module : GPyM.alien.read_hdf5.read_hdf5     
 
-cached      : cached                        ; ['cached', 'cached-verbose', 'skip', 'update']
+; ['cached', 'cached-verbose', 'skip', 'update']
+cached      : cached                        
 cache_dir   : %(dataroot)s/cache.dim 
 
-compression : False                         ; [False, 'lz4']
+; [False, 'lz4']
+compression : False                        
 
-#product_ver : 02
+#product_ver : 05
 
 gportal_id  :
 

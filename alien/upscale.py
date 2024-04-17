@@ -40,24 +40,24 @@ def upscale(aSrc,newShape,mode='s',weight=None,post_weight=None,missing=None):
 
         if missing == None:
             aRe = array([
-                        aSrc[..., i::nFOLD[-2], j::nFOLD[-1]]
-                            for i in range(nFOLD[-2])
-                                for j in range(nFOLD[-1])
+                        aSrc[..., i::int(nFOLD[-2]), j::int(nFOLD[-1])]
+                            for i in range(int(nFOLD[-2]))
+                                for j in range(int(nFOLD[-1]))
                                 ])
 
         else:
             aSrc    = ma.masked_equal(aSrc,missing)
 
             aRe = array([
-                        aSrc.data[..., i::nFOLD[-2], j::nFOLD[-1]]
-                            for i in range(nFOLD[-2])
-                                for j in range(nFOLD[-1])
+                        aSrc.data[..., i::int(nFOLD[-2]), j::int(nFOLD[-1])]
+                            for i in range(int(nFOLD[-2]))
+                                for j in range(int(nFOLD[-1]))
                                 ])
 
             Mask= array([
-                        aSrc.mask[..., i::nFOLD[-2], j::nFOLD[-1]]
-                            for i in range(nFOLD[-2])
-                                for j in range(nFOLD[-1])
+                        aSrc.mask[..., i::int(nFOLD[-2]), j::int(nFOLD[-1])]
+                            for i in range(int(nFOLD[-2]))
+                                for j in range(int(nFOLD[-1]))
                                 ])
 
             aRe = ma.array(aRe,mask=Mask)

@@ -16,13 +16,13 @@ from    optparse        import OptionParser
 from    datetime        import datetime, timedelta
 from    numpy           import array
 
-from    alien.collection            import cached
+from    .alien.collection            import cached
 
-from    get_location_gpm            import get_location_gpm
-from    get_location_trmm           import get_location_trmm
+from    .get_location_gpm            import get_location_gpm
+from    .get_location_trmm           import get_location_trmm
 
-from    get_dtime_gpm               import get_dtime_gpm
-from    get_dtime_trmm              import get_dtime_trmm
+from    .get_dtime_gpm               import get_dtime_gpm
+from    .get_dtime_trmm              import get_dtime_trmm
 
 
 def get_gtrack_dim(srcPath, fn_read, cache=False, cache_dir=None):

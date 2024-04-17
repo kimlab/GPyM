@@ -14,6 +14,6 @@ import  os,sys
 from    optparse        import OptionParser
 
 from    .gpm             import GPM
-from    granule2map     import granule2map
-
+from    .granule2map     import granule2map
+from    .alien.read_hdf5 import read_hdf5
 
